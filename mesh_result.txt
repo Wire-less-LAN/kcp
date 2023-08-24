@@ -1,0 +1,500 @@
+(rto_priv=0.1, cwnd_priv=0): 
+	avgrtt=134 maxrtt=266 tx=833
+	prio: avgrtt=135 maxrtt=231 tx=62
+	unprio: avgrtt=134 maxrtt=266 tx=445
+
+(rto_priv=0.1, cwnd_priv=1): 
+	avgrtt=137 maxrtt=383 tx=781
+	prio: avgrtt=130 maxrtt=317 tx=40
+	unprio: avgrtt=138 maxrtt=383 tx=461
+
+(rto_priv=0.1, cwnd_priv=2): 
+	avgrtt=133 maxrtt=282 tx=814
+	prio: avgrtt=132 maxrtt=231 tx=52
+	unprio: avgrtt=133 maxrtt=282 tx=450
+
+(rto_priv=0.1, cwnd_priv=3): 
+	avgrtt=141 maxrtt=342 tx=827
+	prio: avgrtt=135 maxrtt=300 tx=59
+	unprio: avgrtt=141 maxrtt=342 tx=444
+
+(rto_priv=0.1, cwnd_priv=4): 
+	avgrtt=138 maxrtt=390 tx=836
+	prio: avgrtt=134 maxrtt=242 tx=53
+	unprio: avgrtt=138 maxrtt=390 tx=454
+
+(rto_priv=0.1, cwnd_priv=5): 
+	avgrtt=136 maxrtt=342 tx=834
+	prio: avgrtt=137 maxrtt=280 tx=56
+	unprio: avgrtt=136 maxrtt=342 tx=455
+
+(rto_priv=0.1, cwnd_priv=6): 
+	avgrtt=136 maxrtt=340 tx=777
+	prio: avgrtt=134 maxrtt=243 tx=40
+	unprio: avgrtt=136 maxrtt=340 tx=462
+
+(rto_priv=0.1, cwnd_priv=7): 
+	avgrtt=143 maxrtt=366 tx=793
+	prio: avgrtt=139 maxrtt=303 tx=43
+	unprio: avgrtt=143 maxrtt=366 tx=458
+
+(rto_priv=0.1, cwnd_priv=8): 
+	avgrtt=135 maxrtt=268 tx=804
+	prio: avgrtt=135 maxrtt=247 tx=54
+	unprio: avgrtt=135 maxrtt=268 tx=447
+
+(rto_priv=0.1, cwnd_priv=9): 
+	avgrtt=143 maxrtt=392 tx=802
+	prio: avgrtt=130 maxrtt=352 tx=46
+	unprio: avgrtt=144 maxrtt=392 tx=458
+
+(rto_priv=0.2, cwnd_priv=0): 
+	avgrtt=139 maxrtt=361 tx=795
+	prio: avgrtt=122 maxrtt=247 tx=58
+	unprio: avgrtt=141 maxrtt=361 tx=443
+
+(rto_priv=0.2, cwnd_priv=1): 
+	avgrtt=142 maxrtt=381 tx=748
+	prio: avgrtt=152 maxrtt=249 tx=38
+	unprio: avgrtt=141 maxrtt=381 tx=463
+
+(rto_priv=0.2, cwnd_priv=2): 
+	avgrtt=137 maxrtt=293 tx=822
+	prio: avgrtt=127 maxrtt=270 tx=62
+	unprio: avgrtt=138 maxrtt=293 tx=443
+
+(rto_priv=0.2, cwnd_priv=3): 
+	avgrtt=134 maxrtt=405 tx=768
+	prio: avgrtt=136 maxrtt=252 tx=40
+	unprio: avgrtt=134 maxrtt=405 tx=461
+
+(rto_priv=0.2, cwnd_priv=4): 
+	avgrtt=136 maxrtt=371 tx=748
+	prio: avgrtt=122 maxrtt=286 tx=46
+	unprio: avgrtt=138 maxrtt=371 tx=456
+
+(rto_priv=0.2, cwnd_priv=5): 
+	avgrtt=139 maxrtt=419 tx=769
+	prio: avgrtt=139 maxrtt=319 tx=46
+	unprio: avgrtt=139 maxrtt=419 tx=456
+
+(rto_priv=0.2, cwnd_priv=6): 
+	avgrtt=148 maxrtt=447 tx=794
+	prio: avgrtt=149 maxrtt=427 tx=58
+	unprio: avgrtt=148 maxrtt=447 tx=443
+
+(rto_priv=0.2, cwnd_priv=7): 
+	avgrtt=139 maxrtt=408 tx=768
+	prio: avgrtt=133 maxrtt=348 tx=42
+	unprio: avgrtt=139 maxrtt=408 tx=459
+
+(rto_priv=0.2, cwnd_priv=8): 
+	avgrtt=131 maxrtt=281 tx=757
+	prio: avgrtt=115 maxrtt=213 tx=43
+	unprio: avgrtt=132 maxrtt=281 tx=458
+
+(rto_priv=0.2, cwnd_priv=9): 
+	avgrtt=146 maxrtt=411 tx=764
+	prio: avgrtt=132 maxrtt=291 tx=47
+	unprio: avgrtt=147 maxrtt=411 tx=455
+
+(rto_priv=0.3, cwnd_priv=0): 
+	avgrtt=130 maxrtt=362 tx=706
+	prio: avgrtt=124 maxrtt=253 tx=50
+	unprio: avgrtt=130 maxrtt=362 tx=451
+
+(rto_priv=0.3, cwnd_priv=1): 
+	avgrtt=139 maxrtt=361 tx=730
+	prio: avgrtt=136 maxrtt=281 tx=58
+	unprio: avgrtt=139 maxrtt=361 tx=444
+
+(rto_priv=0.3, cwnd_priv=2): 
+	avgrtt=137 maxrtt=361 tx=719
+	prio: avgrtt=127 maxrtt=341 tx=49
+	unprio: avgrtt=138 maxrtt=361 tx=460
+
+(rto_priv=0.3, cwnd_priv=3): 
+	avgrtt=139 maxrtt=372 tx=725
+	prio: avgrtt=131 maxrtt=272 tx=57
+	unprio: avgrtt=140 maxrtt=372 tx=446
+
+(rto_priv=0.3, cwnd_priv=4): 
+	avgrtt=138 maxrtt=365 tx=724
+	prio: avgrtt=139 maxrtt=304 tx=51
+	unprio: avgrtt=138 maxrtt=365 tx=451
+
+(rto_priv=0.3, cwnd_priv=5): 
+	avgrtt=137 maxrtt=401 tx=735
+	prio: avgrtt=137 maxrtt=401 tx=55
+	unprio: avgrtt=137 maxrtt=380 tx=448
+
+(rto_priv=0.3, cwnd_priv=6): 
+	avgrtt=135 maxrtt=268 tx=708
+	prio: avgrtt=140 maxrtt=241 tx=50
+	unprio: avgrtt=134 maxrtt=268 tx=451
+
+(rto_priv=0.3, cwnd_priv=7): 
+	avgrtt=132 maxrtt=263 tx=715
+	prio: avgrtt=122 maxrtt=234 tx=45
+	unprio: avgrtt=133 maxrtt=263 tx=456
+
+(rto_priv=0.3, cwnd_priv=8): 
+	avgrtt=136 maxrtt=274 tx=720
+	prio: avgrtt=134 maxrtt=226 tx=53
+	unprio: avgrtt=136 maxrtt=274 tx=451
+
+(rto_priv=0.3, cwnd_priv=9): 
+	avgrtt=141 maxrtt=343 tx=707
+	prio: avgrtt=142 maxrtt=323 tx=41
+	unprio: avgrtt=141 maxrtt=343 tx=461
+
+(rto_priv=0.4, cwnd_priv=0): 
+	avgrtt=142 maxrtt=388 tx=710
+	prio: avgrtt=145 maxrtt=268 tx=46
+	unprio: avgrtt=142 maxrtt=388 tx=458
+
+(rto_priv=0.4, cwnd_priv=1): 
+	avgrtt=139 maxrtt=306 tx=711
+	prio: avgrtt=137 maxrtt=306 tx=46
+	unprio: avgrtt=139 maxrtt=286 tx=457
+
+(rto_priv=0.4, cwnd_priv=2): 
+	avgrtt=133 maxrtt=282 tx=702
+	prio: avgrtt=135 maxrtt=262 tx=64
+	unprio: avgrtt=133 maxrtt=282 tx=437
+
+(rto_priv=0.4, cwnd_priv=3): 
+	avgrtt=140 maxrtt=365 tx=706
+	prio: avgrtt=130 maxrtt=262 tx=51
+	unprio: avgrtt=142 maxrtt=365 tx=450
+
+(rto_priv=0.4, cwnd_priv=4): 
+	avgrtt=135 maxrtt=311 tx=705
+	prio: avgrtt=142 maxrtt=300 tx=50
+	unprio: avgrtt=134 maxrtt=311 tx=451
+
+(rto_priv=0.4, cwnd_priv=5): 
+	avgrtt=133 maxrtt=357 tx=705
+	prio: avgrtt=130 maxrtt=231 tx=49
+	unprio: avgrtt=134 maxrtt=357 tx=456
+
+(rto_priv=0.4, cwnd_priv=6): 
+	avgrtt=136 maxrtt=431 tx=713
+	prio: avgrtt=139 maxrtt=391 tx=47
+	unprio: avgrtt=135 maxrtt=431 tx=454
+
+(rto_priv=0.4, cwnd_priv=7): 
+	avgrtt=141 maxrtt=375 tx=698
+	prio: avgrtt=144 maxrtt=292 tx=42
+	unprio: avgrtt=141 maxrtt=375 tx=459
+
+(rto_priv=0.4, cwnd_priv=8): 
+	avgrtt=144 maxrtt=353 tx=703
+	prio: avgrtt=148 maxrtt=313 tx=59
+	unprio: avgrtt=143 maxrtt=353 tx=446
+
+(rto_priv=0.4, cwnd_priv=9): 
+	avgrtt=136 maxrtt=448 tx=734
+	prio: avgrtt=126 maxrtt=308 tx=50
+	unprio: avgrtt=137 maxrtt=448 tx=451
+
+(rto_priv=0.5, cwnd_priv=0): 
+	avgrtt=142 maxrtt=341 tx=709
+	prio: avgrtt=134 maxrtt=232 tx=54
+	unprio: avgrtt=143 maxrtt=341 tx=447
+
+(rto_priv=0.5, cwnd_priv=1): 
+	avgrtt=134 maxrtt=345 tx=717
+	prio: avgrtt=127 maxrtt=242 tx=51
+	unprio: avgrtt=134 maxrtt=345 tx=450
+
+(rto_priv=0.5, cwnd_priv=2): 
+	avgrtt=141 maxrtt=405 tx=709
+	prio: avgrtt=143 maxrtt=245 tx=50
+	unprio: avgrtt=140 maxrtt=405 tx=456
+
+(rto_priv=0.5, cwnd_priv=3): 
+	avgrtt=134 maxrtt=287 tx=701
+	prio: avgrtt=134 maxrtt=229 tx=37
+	unprio: avgrtt=134 maxrtt=287 tx=464
+
+(rto_priv=0.5, cwnd_priv=4): 
+	avgrtt=135 maxrtt=365 tx=702
+	prio: avgrtt=140 maxrtt=305 tx=52
+	unprio: avgrtt=135 maxrtt=365 tx=450
+
+(rto_priv=0.5, cwnd_priv=5): 
+	avgrtt=141 maxrtt=366 tx=719
+	prio: avgrtt=131 maxrtt=250 tx=45
+	unprio: avgrtt=142 maxrtt=366 tx=460
+
+(rto_priv=0.5, cwnd_priv=6): 
+	avgrtt=140 maxrtt=355 tx=716
+	prio: avgrtt=138 maxrtt=245 tx=53
+	unprio: avgrtt=141 maxrtt=355 tx=452
+
+(rto_priv=0.5, cwnd_priv=7): 
+	avgrtt=140 maxrtt=417 tx=693
+	prio: avgrtt=136 maxrtt=280 tx=39
+	unprio: avgrtt=141 maxrtt=417 tx=462
+
+(rto_priv=0.5, cwnd_priv=8): 
+	avgrtt=134 maxrtt=324 tx=708
+	prio: avgrtt=129 maxrtt=270 tx=53
+	unprio: avgrtt=135 maxrtt=324 tx=448
+
+(rto_priv=0.5, cwnd_priv=9): 
+	avgrtt=145 maxrtt=422 tx=688
+	prio: avgrtt=151 maxrtt=402 tx=40
+	unprio: avgrtt=144 maxrtt=422 tx=461
+
+(rto_priv=0.6, cwnd_priv=0): 
+	avgrtt=131 maxrtt=266 tx=698
+	prio: avgrtt=132 maxrtt=220 tx=58
+	unprio: avgrtt=130 maxrtt=266 tx=445
+
+(rto_priv=0.6, cwnd_priv=1): 
+	avgrtt=130 maxrtt=346 tx=707
+	prio: avgrtt=118 maxrtt=286 tx=47
+	unprio: avgrtt=131 maxrtt=346 tx=458
+
+(rto_priv=0.6, cwnd_priv=2): 
+	avgrtt=133 maxrtt=278 tx=696
+	prio: avgrtt=139 maxrtt=231 tx=49
+	unprio: avgrtt=133 maxrtt=278 tx=452
+
+(rto_priv=0.6, cwnd_priv=3): 
+	avgrtt=146 maxrtt=455 tx=703
+	prio: avgrtt=150 maxrtt=415 tx=64
+	unprio: avgrtt=146 maxrtt=455 tx=437
+
+(rto_priv=0.6, cwnd_priv=4): 
+	avgrtt=139 maxrtt=352 tx=701
+	prio: avgrtt=132 maxrtt=252 tx=50
+	unprio: avgrtt=140 maxrtt=352 tx=451
+
+(rto_priv=0.6, cwnd_priv=5): 
+	avgrtt=139 maxrtt=361 tx=679
+	prio: avgrtt=135 maxrtt=281 tx=51
+	unprio: avgrtt=139 maxrtt=361 tx=450
+
+(rto_priv=0.6, cwnd_priv=6): 
+	avgrtt=137 maxrtt=399 tx=716
+	prio: avgrtt=145 maxrtt=379 tx=60
+	unprio: avgrtt=136 maxrtt=399 tx=446
+
+(rto_priv=0.6, cwnd_priv=7): 
+	avgrtt=138 maxrtt=460 tx=692
+	prio: avgrtt=125 maxrtt=420 tx=50
+	unprio: avgrtt=140 maxrtt=460 tx=453
+
+(rto_priv=0.6, cwnd_priv=8): 
+	avgrtt=137 maxrtt=382 tx=699
+	prio: avgrtt=137 maxrtt=299 tx=46
+	unprio: avgrtt=137 maxrtt=382 tx=455
+
+(rto_priv=0.6, cwnd_priv=9): 
+	avgrtt=144 maxrtt=404 tx=711
+	prio: avgrtt=132 maxrtt=315 tx=48
+	unprio: avgrtt=145 maxrtt=404 tx=453
+
+(rto_priv=0.7, cwnd_priv=0): 
+	avgrtt=136 maxrtt=266 tx=693
+	prio: avgrtt=133 maxrtt=241 tx=57
+	unprio: avgrtt=136 maxrtt=266 tx=444
+
+(rto_priv=0.7, cwnd_priv=1): 
+	avgrtt=139 maxrtt=342 tx=696
+	prio: avgrtt=126 maxrtt=270 tx=56
+	unprio: avgrtt=141 maxrtt=342 tx=445
+
+(rto_priv=0.7, cwnd_priv=2): 
+	avgrtt=132 maxrtt=279 tx=700
+	prio: avgrtt=129 maxrtt=239 tx=45
+	unprio: avgrtt=132 maxrtt=279 tx=463
+
+(rto_priv=0.7, cwnd_priv=3): 
+	avgrtt=135 maxrtt=355 tx=698
+	prio: avgrtt=134 maxrtt=335 tx=49
+	unprio: avgrtt=135 maxrtt=355 tx=456
+
+(rto_priv=0.7, cwnd_priv=4): 
+	avgrtt=146 maxrtt=497 tx=683
+	prio: avgrtt=132 maxrtt=359 tx=47
+	unprio: avgrtt=147 maxrtt=497 tx=454
+
+(rto_priv=0.7, cwnd_priv=5): 
+	avgrtt=135 maxrtt=271 tx=696
+	prio: avgrtt=132 maxrtt=251 tx=48
+	unprio: avgrtt=135 maxrtt=271 tx=459
+
+(rto_priv=0.7, cwnd_priv=6): 
+	avgrtt=136 maxrtt=282 tx=692
+	prio: avgrtt=132 maxrtt=252 tx=54
+	unprio: avgrtt=137 maxrtt=282 tx=447
+
+(rto_priv=0.7, cwnd_priv=7): 
+	avgrtt=142 maxrtt=409 tx=723
+	prio: avgrtt=153 maxrtt=349 tx=54
+	unprio: avgrtt=140 maxrtt=409 tx=453
+
+(rto_priv=0.7, cwnd_priv=8): 
+	avgrtt=134 maxrtt=296 tx=696
+	prio: avgrtt=136 maxrtt=216 tx=44
+	unprio: avgrtt=134 maxrtt=296 tx=462
+
+(rto_priv=0.7, cwnd_priv=9): 
+	avgrtt=140 maxrtt=382 tx=683
+	prio: avgrtt=139 maxrtt=282 tx=45
+	unprio: avgrtt=140 maxrtt=382 tx=462
+
+(rto_priv=0.8, cwnd_priv=0): 
+	avgrtt=143 maxrtt=374 tx=684
+	prio: avgrtt=153 maxrtt=347 tx=52
+	unprio: avgrtt=141 maxrtt=374 tx=449
+
+(rto_priv=0.8, cwnd_priv=1): 
+	avgrtt=138 maxrtt=376 tx=689
+	prio: avgrtt=147 maxrtt=316 tx=54
+	unprio: avgrtt=137 maxrtt=376 tx=447
+
+(rto_priv=0.8, cwnd_priv=2): 
+	avgrtt=136 maxrtt=272 tx=711
+	prio: avgrtt=131 maxrtt=240 tx=50
+	unprio: avgrtt=137 maxrtt=272 tx=453
+
+(rto_priv=0.8, cwnd_priv=3): 
+	avgrtt=140 maxrtt=383 tx=677
+	prio: avgrtt=137 maxrtt=221 tx=46
+	unprio: avgrtt=140 maxrtt=383 tx=455
+
+(rto_priv=0.8, cwnd_priv=4): 
+	avgrtt=138 maxrtt=380 tx=695
+	prio: avgrtt=149 maxrtt=245 tx=53
+	unprio: avgrtt=137 maxrtt=380 tx=448
+
+(rto_priv=0.8, cwnd_priv=5): 
+	avgrtt=135 maxrtt=340 tx=696
+	prio: avgrtt=138 maxrtt=280 tx=47
+	unprio: avgrtt=135 maxrtt=340 tx=454
+
+(rto_priv=0.8, cwnd_priv=6): 
+	avgrtt=137 maxrtt=301 tx=699
+	prio: avgrtt=144 maxrtt=282 tx=53
+	unprio: avgrtt=136 maxrtt=301 tx=448
+
+(rto_priv=0.8, cwnd_priv=7): 
+	avgrtt=139 maxrtt=401 tx=662
+	prio: avgrtt=138 maxrtt=231 tx=56
+	unprio: avgrtt=139 maxrtt=401 tx=445
+
+(rto_priv=0.8, cwnd_priv=8): 
+	avgrtt=134 maxrtt=297 tx=676
+	prio: avgrtt=127 maxrtt=263 tx=56
+	unprio: avgrtt=135 maxrtt=297 tx=445
+
+(rto_priv=0.8, cwnd_priv=9): 
+	avgrtt=140 maxrtt=370 tx=683
+	prio: avgrtt=130 maxrtt=244 tx=49
+	unprio: avgrtt=141 maxrtt=370 tx=452
+
+(rto_priv=0.9, cwnd_priv=0): 
+	avgrtt=137 maxrtt=362 tx=682
+	prio: avgrtt=139 maxrtt=307 tx=40
+	unprio: avgrtt=137 maxrtt=362 tx=461
+
+(rto_priv=0.9, cwnd_priv=1): 
+	avgrtt=143 maxrtt=431 tx=672
+	prio: avgrtt=139 maxrtt=274 tx=60
+	unprio: avgrtt=143 maxrtt=431 tx=445
+
+(rto_priv=0.9, cwnd_priv=2): 
+	avgrtt=138 maxrtt=361 tx=702
+	prio: avgrtt=157 maxrtt=341 tx=50
+	unprio: avgrtt=136 maxrtt=361 tx=451
+
+(rto_priv=0.9, cwnd_priv=3): 
+	avgrtt=136 maxrtt=281 tx=688
+	prio: avgrtt=132 maxrtt=251 tx=47
+	unprio: avgrtt=136 maxrtt=281 tx=456
+
+(rto_priv=0.9, cwnd_priv=4): 
+	avgrtt=134 maxrtt=358 tx=675
+	prio: avgrtt=127 maxrtt=338 tx=43
+	unprio: avgrtt=134 maxrtt=358 tx=458
+
+(rto_priv=0.9, cwnd_priv=5): 
+	avgrtt=137 maxrtt=358 tx=697
+	prio: avgrtt=137 maxrtt=258 tx=44
+	unprio: avgrtt=137 maxrtt=358 tx=458
+
+(rto_priv=0.9, cwnd_priv=6): 
+	avgrtt=142 maxrtt=392 tx=671
+	prio: avgrtt=136 maxrtt=352 tx=47
+	unprio: avgrtt=142 maxrtt=392 tx=454
+
+(rto_priv=0.9, cwnd_priv=7): 
+	avgrtt=138 maxrtt=361 tx=702
+	prio: avgrtt=139 maxrtt=361 tx=63
+	unprio: avgrtt=138 maxrtt=321 tx=441
+
+(rto_priv=0.9, cwnd_priv=8): 
+	avgrtt=139 maxrtt=378 tx=693
+	prio: avgrtt=146 maxrtt=278 tx=56
+	unprio: avgrtt=138 maxrtt=378 tx=451
+
+(rto_priv=0.9, cwnd_priv=9): 
+	avgrtt=133 maxrtt=348 tx=671
+	prio: avgrtt=132 maxrtt=247 tx=56
+	unprio: avgrtt=133 maxrtt=348 tx=445
+
+(rto_priv=1.0, cwnd_priv=0): 
+	avgrtt=141 maxrtt=384 tx=700
+	prio: avgrtt=138 maxrtt=250 tx=50
+	unprio: avgrtt=141 maxrtt=384 tx=455
+
+(rto_priv=1.0, cwnd_priv=1): 
+	avgrtt=139 maxrtt=397 tx=690
+	prio: avgrtt=133 maxrtt=242 tx=61
+	unprio: avgrtt=140 maxrtt=397 tx=446
+
+(rto_priv=1.0, cwnd_priv=2): 
+	avgrtt=143 maxrtt=378 tx=668
+	prio: avgrtt=140 maxrtt=358 tx=52
+	unprio: avgrtt=143 maxrtt=378 tx=449
+
+(rto_priv=1.0, cwnd_priv=3): 
+	avgrtt=132 maxrtt=369 tx=676
+	prio: avgrtt=125 maxrtt=350 tx=48
+	unprio: avgrtt=133 maxrtt=369 tx=453
+
+(rto_priv=1.0, cwnd_priv=4): 
+	avgrtt=134 maxrtt=368 tx=690
+	prio: avgrtt=131 maxrtt=249 tx=55
+	unprio: avgrtt=135 maxrtt=368 tx=447
+
+(rto_priv=1.0, cwnd_priv=5): 
+	avgrtt=137 maxrtt=297 tx=666
+	prio: avgrtt=144 maxrtt=278 tx=46
+	unprio: avgrtt=136 maxrtt=297 tx=455
+
+(rto_priv=1.0, cwnd_priv=6): 
+	avgrtt=148 maxrtt=412 tx=680
+	prio: avgrtt=146 maxrtt=412 tx=56
+	unprio: avgrtt=148 maxrtt=392 tx=445
+
+(rto_priv=1.0, cwnd_priv=7): 
+	avgrtt=136 maxrtt=389 tx=686
+	prio: avgrtt=138 maxrtt=250 tx=62
+	unprio: avgrtt=136 maxrtt=389 tx=439
+
+(rto_priv=1.0, cwnd_priv=8): 
+	avgrtt=143 maxrtt=432 tx=694
+	prio: avgrtt=145 maxrtt=392 tx=48
+	unprio: avgrtt=143 maxrtt=432 tx=459
+
+(rto_priv=1.0, cwnd_priv=9): 
+	avgrtt=137 maxrtt=345 tx=709
+	prio: avgrtt=138 maxrtt=250 tx=56
+	unprio: avgrtt=137 maxrtt=345 tx=449
+

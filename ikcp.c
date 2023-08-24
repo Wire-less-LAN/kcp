@@ -688,7 +688,7 @@ static void ikcp_ack_push(ikcpcb *kcp, IUINT32 sn, IUINT32 ts, int prio)
 		*kcp_ackblock = newblock;
 	}
 
-	ptr = &(*kcp_acklist)[kcp->ackcount * 2];
+	ptr = &(*kcp_acklist)[*kcp_ackcount * 2];
 	ptr[0] = sn;
 	ptr[1] = ts;
 	(*kcp_ackcount)++;
@@ -776,6 +776,7 @@ int ikcp_input(ikcpcb *kcp, const char *data, long size)
 	IUINT32 prev_una = kcp->snd_una;
 	IUINT32 maxack = 0, latest_ts = 0;
 	int flag = 0;
+	int prio_flag = 0;
 
 	if (ikcp_canlog(kcp, IKCP_LOG_INPUT)) {
 		ikcp_log(kcp, IKCP_LOG_INPUT, "[RI] %d bytes", (int)size);
@@ -837,6 +838,9 @@ int ikcp_input(ikcpcb *kcp, const char *data, long size)
 					}
 				#endif
 				}
+			}
+			if (prio) {
+				prio_flag++;
 			}
 			if (ikcp_canlog(kcp, IKCP_LOG_IN_ACK)) {
 				ikcp_log(kcp, IKCP_LOG_IN_ACK, 
@@ -906,6 +910,10 @@ int ikcp_input(ikcpcb *kcp, const char *data, long size)
 			if (kcp->cwnd < kcp->ssthresh) {
 				kcp->cwnd++;
 				kcp->incr += mss;
+				if (prio_flag) { // policy: more incr
+					kcp->cwnd += cwnd_priv * prio_flag;
+					kcp->incr += cwnd_priv * prio_flag *mss;
+				}
 			}	else {
 				if (kcp->incr < mss) kcp->incr = mss;
 				kcp->incr += (mss * mss) / kcp->incr + (mss / 16);
@@ -985,6 +993,7 @@ void ikcp_flush(ikcpcb *kcp)
 
 	// flush acknowledges
 	// flush p_acklist first
+	seg.prio = 1;
 	count = kcp->p_ackcount;
 	for (i = 0; i < count; i++) {
 		size = (int)(ptr - buffer);
@@ -994,7 +1003,14 @@ void ikcp_flush(ikcpcb *kcp)
 		}
 		ikcp_ack_get(kcp, i, &seg.sn, &seg.ts, 1);
 		ptr = ikcp_encode_seg(ptr, &seg);
+
+		if (ikcp_canlog(kcp, IKCP_LOG_OUTPUT)) {
+			ikcp_log(kcp, IKCP_LOG_OUTPUT, "output ack: sn=%ld ts=%ld",
+			(long)seg.sn, (long)seg.ts);
+		}
 	}
+
+	seg.prio = 0;
 	count = kcp->ackcount;
 	for (i = 0; i < count; i++) {
 		size = (int)(ptr - buffer);
@@ -1004,6 +1020,11 @@ void ikcp_flush(ikcpcb *kcp)
 		}
 		ikcp_ack_get(kcp, i, &seg.sn, &seg.ts, 0);
 		ptr = ikcp_encode_seg(ptr, &seg);
+
+		if (ikcp_canlog(kcp, IKCP_LOG_OUTPUT)) {
+			ikcp_log(kcp, IKCP_LOG_OUTPUT, "output ack: sn=%ld ts=%ld",
+			(long)seg.sn, (long)seg.ts);
+		}
 	}
 
 	kcp->ackcount = 0;
@@ -1096,8 +1117,8 @@ void ikcp_flush(ikcpcb *kcp)
 			segment->xmit++;
 			segment->rto = kcp->rx_rto;
 
-			// policy: 0.5 of original rto if prioritized
-			if (segment->prio) segment->rto >>= 1;
+			// policy: portion of original rto if prioritized
+			if (segment->prio) segment->rto *= rto_priv;
 
 			segment->resendts = current + segment->rto + rtomin;
 		}
@@ -1106,15 +1127,16 @@ void ikcp_flush(ikcpcb *kcp)
 			segment->xmit++;
 			kcp->xmit++;
 			if (kcp->nodelay == 0) {
-				// policy: only unprioritized segments need to elongate their rto
-				if (!segment->prio) {
-					segment->rto += _imax_(segment->rto, (IUINT32)kcp->rx_rto);
-				}
+				segment->rto += _imax_(segment->rto, (IUINT32)kcp->rx_rto);
 			}	else {
 				IINT32 step = (kcp->nodelay < 2)? 
 					((IINT32)(segment->rto)) : kcp->rx_rto;
 				segment->rto += step / 2;
 			}
+
+			// policy: portion of original rto if prioritized
+			if (segment->prio) segment->rto *= rto_priv;
+
 			segment->resendts = current + segment->rto;
 			lost = 1;
 		}
@@ -1131,6 +1153,12 @@ void ikcp_flush(ikcpcb *kcp)
 
 		if (needsend) {
 			int need;
+
+			if (ikcp_canlog(kcp, IKCP_LOG_OUTPUT)) {
+				ikcp_log(kcp, IKCP_LOG_OUTPUT, "output psh: sn=%ld xmit=%ld fastack=%ld resendts=%ld",
+				(long)segment->sn, (long)segment->xmit, (long)segment->fastack, (long)segment->resendts);
+			}
+
 			segment->ts = current;
 			segment->wnd = seg.wnd;
 			segment->una = kcp->rcv_nxt;

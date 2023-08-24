@@ -1,0 +1,14 @@
+[
+{
+  "directory": "/workspaces/kcp/build",
+  "command": "/usr/bin/clang   -g -o CMakeFiles/kcp.dir/ikcp.c.o -c /workspaces/kcp/ikcp.c",
+  "file": "/workspaces/kcp/ikcp.c",
+  "output": "CMakeFiles/kcp.dir/ikcp.c.o"
+},
+{
+  "directory": "/workspaces/kcp/build",
+  "command": "/usr/bin/clang++   -g -o CMakeFiles/kcp_test.dir/test.cpp.o -c /workspaces/kcp/test.cpp",
+  "file": "/workspaces/kcp/test.cpp",
+  "output": "CMakeFiles/kcp_test.dir/test.cpp.o"
+}
+]

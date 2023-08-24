@@ -412,6 +412,11 @@ IUINT32 ikcp_getconv(const void *ptr);
 }
 #endif
 
+extern double rto_priv;
+extern int cwnd_priv;
+
+extern int rexmit_count;
+
 #endif
 
 

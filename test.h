@@ -22,6 +22,9 @@
 #include <sys/types.h>
 #endif
 
+#include <algorithm>
+#include <math.h>
+
 /* get system time */
 static inline void itimeofday(long *sec, long *usec)
 {
@@ -154,13 +157,15 @@ public:
 	// lostrate: 往返一周丢包率的百分比，默认 10%
 	// rttmin：rtt最小值，默认 60
 	// rttmax：rtt最大值，默认 125
-	LatencySimulator(int lostrate = 10, int rttmin = 60, int rttmax = 125, int nmax = 1000): 
+	LatencySimulator(int lossmin = 10, int lossmax = 30, int rttmin = 60, int rttmax = 125, int nmax = 1000, int vib = 2): 
 		r12(100), r21(100) {
 		current = iclock();		
-		this->lostrate = lostrate / 2;	// 上面数据是往返丢包率，单程除以2
+		this->lossmin = lossmin / 2;
+		this->lossmax = lossmax / 2;	
 		this->rttmin = rttmin / 2;
 		this->rttmax = rttmax / 2;
 		this->nmax = nmax;
+		this->vib = vib;
 		tx1 = tx2 = 0;
 	}
 
@@ -180,6 +185,7 @@ public:
 	// 发送数据
 	// peer - 端点0/1，从0发送，从1接收；从1发送从0接收
 	void send(int peer, const void *data, int size) {
+		viberate();
 		if (peer == 0) {
 			tx1++;
 			if (r12.random() < lostrate) return;
@@ -191,8 +197,8 @@ public:
 		}
 		DelayPacket *pkt = new DelayPacket(size, data);
 		current = iclock();
-		IUINT32 delay = rttmin;
-		if (rttmax > rttmin) delay += rand() % (rttmax - rttmin);
+		IUINT32 delay = rtt;
+		// if (rttmax > rttmin) delay += rand() % (rttmax - rttmin);
 		pkt->setts(current + delay);
 		if (peer == 0) {
 			p12.push_back(pkt);
@@ -203,6 +209,7 @@ public:
 
 	// 接收数据
 	int recv(int peer, void *data, int maxsize) {
+		viberate();
 		DelayTunnel::iterator it;
 		if (peer == 0) {
 			it = p21.begin();
@@ -233,14 +240,28 @@ public:
 protected:
 	IUINT32 current;
 	int lostrate;
+	int lossmin;
+	int lossmax;
+	int rtt;
 	int rttmin;
 	int rttmax;
 	int nmax;
+	int vib;
 	typedef std::list<DelayPacket*> DelayTunnel;
 	DelayTunnel p12;
 	DelayTunnel p21;
 	Random r12;
 	Random r21;
+
+	void viberate() {
+		lostrate += vib * (rand() % 2 ? 1 : -1);
+		lostrate = std::max(lostrate, lossmin);
+		lostrate = std::min(lostrate, lossmax);
+
+		rtt += vib * (rand() % 2 ? 1 : -1);
+		rtt = std::max(rtt, rttmin);
+		rtt = std::min(rtt, rttmax);
+	}
 };
 
 #endif

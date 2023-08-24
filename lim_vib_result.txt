@@ -1,0 +1,135 @@
+(rto_priv=0.3, loss=0): 
+	avgrtt=173 maxrtt=444 tx=1046
+	prio: avgrtt=170 maxrtt=293 tx=70
+	unprio: avgrtt=173 maxrtt=444 tx=633
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=179 maxrtt=402 tx=1101
+	prio: avgrtt=152 maxrtt=358 tx=90
+	unprio: avgrtt=183 maxrtt=402 tx=612
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=176 maxrtt=419 tx=1085
+	prio: avgrtt=170 maxrtt=383 tx=91
+	unprio: avgrtt=177 maxrtt=419 tx=610
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=179 maxrtt=437 tx=1059
+	prio: avgrtt=139 maxrtt=242 tx=30
+	unprio: avgrtt=181 maxrtt=437 tx=676
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=176 maxrtt=426 tx=1043
+	prio: avgrtt=157 maxrtt=275 tx=61
+	unprio: avgrtt=178 maxrtt=426 tx=642
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=171 maxrtt=464 tx=1066
+	prio: avgrtt=137 maxrtt=246 tx=70
+	unprio: avgrtt=175 maxrtt=464 tx=631
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=213 maxrtt=872 tx=1090
+	prio: avgrtt=191 maxrtt=408 tx=82
+	unprio: avgrtt=216 maxrtt=872 tx=633
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=189 maxrtt=437 tx=1034
+	prio: avgrtt=171 maxrtt=282 tx=61
+	unprio: avgrtt=191 maxrtt=437 tx=640
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=178 maxrtt=529 tx=1079
+	prio: avgrtt=123 maxrtt=233 tx=81
+	unprio: avgrtt=185 maxrtt=529 tx=620
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=186 maxrtt=729 tx=1055
+	prio: avgrtt=182 maxrtt=449 tx=50
+	unprio: avgrtt=187 maxrtt=729 tx=652
+
+(rto_priv=0.1, loss=0): 
+	avgrtt=183 maxrtt=451 tx=1107
+	prio: avgrtt=159 maxrtt=380 tx=100
+	unprio: avgrtt=187 maxrtt=451 tx=606
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=171 maxrtt=549 tx=1056
+	prio: avgrtt=126 maxrtt=286 tx=60
+	unprio: avgrtt=176 maxrtt=549 tx=647
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=169 maxrtt=512 tx=1140
+	prio: avgrtt=164 maxrtt=351 tx=152
+	unprio: avgrtt=170 maxrtt=512 tx=555
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=182 maxrtt=487 tx=1092
+	prio: avgrtt=166 maxrtt=425 tx=91
+	unprio: avgrtt=184 maxrtt=487 tx=612
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=176 maxrtt=473 tx=1048
+	prio: avgrtt=132 maxrtt=276 tx=70
+	unprio: avgrtt=180 maxrtt=473 tx=638
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=174 maxrtt=481 tx=1072
+	prio: avgrtt=138 maxrtt=273 tx=80
+	unprio: avgrtt=178 maxrtt=481 tx=623
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=182 maxrtt=499 tx=1025
+	prio: avgrtt=163 maxrtt=277 tx=51
+	unprio: avgrtt=183 maxrtt=499 tx=650
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=183 maxrtt=447 tx=1049
+	prio: avgrtt=157 maxrtt=312 tx=50
+	unprio: avgrtt=185 maxrtt=447 tx=652
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=176 maxrtt=534 tx=1079
+	prio: avgrtt=135 maxrtt=256 tx=81
+	unprio: avgrtt=181 maxrtt=534 tx=620
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=180 maxrtt=477 tx=1024
+	prio: avgrtt=189 maxrtt=345 tx=20
+	unprio: avgrtt=180 maxrtt=477 tx=681
+
+(rto_priv=0.2, loss=0): 
+	avgrtt=184 maxrtt=477 tx=1048
+	prio: avgrtt=142 maxrtt=307 tx=40
+	unprio: avgrtt=186 maxrtt=477 tx=666
+
+(rto_priv=0.3, loss=0): 
+	avgrtt=176 maxrtt=523 tx=1057
+	prio: avgrtt=174 maxrtt=443 tx=81
+	unprio: avgrtt=176 maxrtt=523 tx=622
+
+(rto_priv=0.3, loss=0): 
+	avgrtt=173 maxrtt=400 tx=1062
+	prio: avgrtt=136 maxrtt=280 tx=81
+	unprio: avgrtt=178 maxrtt=400 tx=621
+
+(rto_priv=0.3, loss=0): 
+	avgrtt=180 maxrtt=443 tx=1050
+	prio: avgrtt=159 maxrtt=286 tx=50
+	unprio: avgrtt=182 maxrtt=443 tx=661
+
+(rto_priv=0.3, loss=0): 
+	avgrtt=177 maxrtt=413 tx=1100
+	prio: avgrtt=158 maxrtt=276 tx=80
+	unprio: avgrtt=180 maxrtt=413 tx=622
+
+(rto_priv=0.3, loss=0): 
+	avgrtt=179 maxrtt=518 tx=1086
+	prio: avgrtt=163 maxrtt=344 tx=110
+	unprio: avgrtt=182 maxrtt=518 tx=592
+
+(rto_priv=0.3, loss=0): 
+	avgrtt=182 maxrtt=490 tx=1036
+	prio: avgrtt=168 maxrtt=319 tx=50
+	unprio: avgrtt=183 maxrtt=490 tx=658
+
