@@ -10,9 +10,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <string>
+#include <fstream>
+
 #include "test.h"
 #include "ikcp.c"
 
+std::ofstream out1("kcp1log.log");
+std::ofstream out2("kcp2log.log");
+
+void write_log1(const char *log, struct IKCPCB *kcp, void *user) {
+	std::string log_str(log);
+	out1 << log_str << std::endl;
+}
+void write_log2(const char *log, struct IKCPCB *kcp, void *user) {
+	std::string log_str(log);
+	out2 << log_str << std::endl;
+}
 
 // 模拟网络
 LatencySimulator *vnet;
@@ -40,6 +54,11 @@ void test(int mode)
 	// 设置kcp的下层输出，这里为 udp_output，模拟udp网络输出函数
 	kcp1->output = udp_output;
 	kcp2->output = udp_output;
+
+	// kcp1->logmask = 0xfff;
+	// kcp2->logmask = 0xfff;
+	// kcp1->writelog = write_log1;
+	// kcp2->writelog = write_log2;
 
 	IUINT32 current = iclock();
 	IUINT32 slap = current + 20;
@@ -94,7 +113,7 @@ void test(int mode)
 			((IUINT32*)buffer)[1] = current;
 
 			// 发送上层协议包
-			ikcp_send(kcp1, buffer, 8);
+			ikcp_send(kcp1, buffer, 8, 0);
 		}
 
 		// 处理虚拟网络：检测是否有udp包从p1->p2
@@ -119,7 +138,7 @@ void test(int mode)
 			// 没有收到包就退出
 			if (hr < 0) break;
 			// 如果收到包就回射
-			ikcp_send(kcp2, buffer, hr);
+			ikcp_send(kcp2, buffer, hr, 0);
 		}
 
 		// kcp1收到kcp2的回射数据

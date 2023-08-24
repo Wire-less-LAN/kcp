@@ -279,6 +279,7 @@ struct IKCPSEG
 	IUINT32 rto;
 	IUINT32 fastack;
 	IUINT32 xmit;
+	IUINT32 prio;
 	char data[1];
 };
 
@@ -303,9 +304,9 @@ struct IKCPCB
 	struct IQUEUEHEAD rcv_queue;
 	struct IQUEUEHEAD snd_buf;
 	struct IQUEUEHEAD rcv_buf;
-	IUINT32 *acklist;
-	IUINT32 ackcount;
-	IUINT32 ackblock;
+	IUINT32 *acklist, *p_acklist;
+	IUINT32 ackcount, p_ackcount;
+	IUINT32 ackblock, p_ackblock;
 	void *user;
 	char *buffer;
 	int fastresend;
@@ -356,7 +357,7 @@ void ikcp_setoutput(ikcpcb *kcp, int (*output)(const char *buf, int len,
 int ikcp_recv(ikcpcb *kcp, char *buffer, int len);
 
 // user/upper level send, returns below zero for error
-int ikcp_send(ikcpcb *kcp, const char *buffer, int len);
+int ikcp_send(ikcpcb *kcp, const char *buffer, int len, int prio);
 
 // update state (call it repeatedly, every 10ms-100ms), or you can ask 
 // ikcp_check when to call it again (without ikcp_input/_send calling).
