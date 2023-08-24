@@ -133,3 +133,13 @@
 	prio: avgrtt=168 maxrtt=319 tx=50
 	unprio: avgrtt=183 maxrtt=490 tx=658
 
+(rto_priv=0.3, loss=0): 
+	avgrtt=180 maxrtt=519 tx=1015
+	prio: avgrtt=107 maxrtt=191 tx=48
+	unprio: avgrtt=186 maxrtt=519 tx=655
+
+(rto_priv=0.3, loss=0): 
+	avgrtt=181 maxrtt=554 tx=1043
+	prio: avgrtt=157 maxrtt=283 tx=60
+	unprio: avgrtt=183 maxrtt=554 tx=641
+
