@@ -182,7 +182,7 @@ test_res test(bool prio_test)
 			if (sn != next) {
 				// 如果收到的包不连续
 				printf("ERROR sn %d<->%d\n", (int)count, (int)next);
-				return;
+				return {0, 0, 0, 0, 0, 0, 0, 0, 0};
 			}
 
 			next++;
@@ -213,10 +213,6 @@ test_res test(bool prio_test)
 	return {(int)(sumrtt / count), (int)maxrtt, (int)vnet->tx1,
 		(int)(p_sumrtt / p_count), (int)p_maxrtt, (int)p_count,
 	 	(int)(up_sumrtt / up_count), (int)up_maxrtt, (int)up_count};
-
-
-
-	delete vnet;
 }
 
 int main()
@@ -244,14 +240,14 @@ int main()
 	close(fd);
 
 	// rto_loss_test
- 	fd = open("/workspaces/kcp/rto_cwnd_result.txt", O_WRONLY | O_CREAT | O_APPEND, 0644); 
+ 	fd = open("/workspaces/kcp/rto_loss_result.txt", O_WRONLY | O_CREAT | O_APPEND, 0644); 
     if (fd == -1) {
         perror("open");
 		exit(1);
     }
 	for (rto_priv = 0.1; rto_priv < 1; rto_priv += 0.1) {
 		for (loss = 10; loss < 100; loss += 10) {
-			vnet = new OldLatencySimulator(10, 60, 125);
+			vnet = new OldLatencySimulator(loss, 60, 125);
 			auto res = test(true);
 
 			dprintf(fd, "(rto_priv=%.1f, loss=%d): \n", rto_priv, loss);
@@ -264,17 +260,17 @@ int main()
 	close(fd);
 
 	// vib_rto_cwnd_test
- 	fd = open("/workspaces/kcp/rto_cwnd_result.txt", O_WRONLY | O_CREAT | O_APPEND, 0644); 
+ 	fd = open("/workspaces/kcp/vib_rto_cwnd_result.txt", O_WRONLY | O_CREAT | O_APPEND, 0644); 
     if (fd == -1) {
         perror("open");
 		exit(1);
     }
 	for (rto_priv = 0.1; rto_priv < 1; rto_priv += 0.1) {
-		for (loss = 10; loss < 100; loss += 10) {
+		for (cwnd_priv = 0; cwnd_priv < 10; ++cwnd_priv) {
 			vnet = new VibLatencySimulator(10, 40, 60, 125, 100, 1);
 			auto res = test(true);
 
-			dprintf(fd, "(rto_priv=%.1f, loss=%d): \n", rto_priv, loss);
+			dprintf(fd, "(rto_priv=%.1f, cwnd_priv=%d): \n", rto_priv, cwnd_priv);
 			dprintf(fd, "\tavgrtt=%d maxrtt=%d tx=%d\n", res.avgrtt, res.maxrtt, res.tx1);
 			dprintf(fd, "\tprio: avgrtt=%d maxrtt=%d tx=%d\n", res.p_avgrtt, res.p_maxrtt, res.p_tx);
 			dprintf(fd, "\tunprio: avgrtt=%d maxrtt=%d tx=%d\n\n", res.up_avgrtt, res.up_maxrtt, res.up_tx);
