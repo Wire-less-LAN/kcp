@@ -20,18 +20,13 @@
 #include "ikcp.c"
 #include "ikcp.h"
 
-std::ofstream out("kcp1log.log");
-std::ofstream out2("kcp2log.log");
-std::ofstream resultfile("/workspaces/kcp/result.txt", std::ios::app);
 
 int wnd_size;
 double rto_priv;
 int cwnd_priv;
 int loss;
-int fd;
 
-int rexmit_count;
-
+std::ofstream out("ikcp.log", std::ios::app);
 void write_log(const char *log, struct IKCPCB *kcp, void *user) {
 	std::string log_str(log);
 	if (user == (void*)0) {
@@ -40,10 +35,6 @@ void write_log(const char *log, struct IKCPCB *kcp, void *user) {
 		out << "[2] ";
 	}
 	out << log_str << std::endl;
-}
-void write_log2(const char *log, struct IKCPCB *kcp, void *user) {
-	std::string log_str(log);
-	out2 << log_str << std::endl;
 }
 
 // 模拟网络
@@ -58,12 +49,16 @@ int udp_output(const char *buf, int len, ikcpcb *kcp, void *user)
 	return 0;
 }
 
+struct test_res{
+	int avgrtt, maxrtt, tx1;
+	int p_avgrtt, p_maxrtt, p_tx;
+	int up_avgrtt, up_maxrtt, up_tx;
+};
+
 // 测试用例
-void test(int mode)
+test_res test(bool prio_test)
 {
 
-	// 创建模拟网络：丢包率10%，Rtt 60ms~125ms
-	vnet = new LatencySimulator(10, 40, 60, 125, 100, 1);
 
 	// 创建两个端点的 kcp对象，第一个参数 conv是会话编号，同一个会话需要相同
 	// 最后一个是 user参数，用来传递标识
@@ -99,44 +94,35 @@ void test(int mode)
 	ikcp_wndsize(kcp1, 128, 128);
 	ikcp_wndsize(kcp2, 128, 128);
 
-	// 判断测试用例的模式
-	if (mode == 0) {
-		// 默认模式
-		ikcp_nodelay(kcp1, 0, 10, 3, 0);
-		ikcp_nodelay(kcp2, 0, 10, 3, 0);
-	}
-	else if (mode == 1) {
-		// 普通模式，关闭流控等
-		ikcp_nodelay(kcp1, 0, 10, 2, 1);
-		ikcp_nodelay(kcp2, 0, 10, 2, 1);
-	}	else {
-		// 启动快速模式
-		// 第二个参数 nodelay-启用以后若干常规加速将启动
-		// 第三个参数 interval为内部处理时钟，默认设置为 10ms
-		// 第四个参数 resend为快速重传指标，设置为2
-		// 第五个参数 为是否禁用常规流控，这里禁止
-		ikcp_nodelay(kcp1, 2, 10, 2, 1);
-		ikcp_nodelay(kcp2, 2, 10, 2, 1);
-		// kcp1->rx_minrto = 10;
-		// kcp1->fastresend = 1;
-	}
+	// 启动快速模式
+	// 第二个参数 nodelay-启用以后若干常规加速将启动
+	// 第三个参数 interval为内部处理时钟，默认设置为 10ms
+	// 第四个参数 resend为快速重传指标，设置为2
+	// 第五个参数 为是否禁用常规流控，这里禁止
+	ikcp_nodelay(kcp1, 2, 10, 2, 1);
+	ikcp_nodelay(kcp2, 2, 10, 2, 1);
 
 	char buffer[2000];
 	int hr;
-
+	
 	srand(iclock());
 	bool prios[5001];
-	for (int i = 0; i <= 5000; ++i) {
-		if (rand() % 100 > 0) {
-			prios[i] = 0;
-		} else {
-			for (int j = i; j <=5000 && j < i + 10; ++j) {
-				prios[j] = 1;
+	if (prio_test) {
+		for (int i = 0; i <= 5000; ++i) {
+			if (rand() % 100 > 0) {
+				prios[i] = 0;
+			} else {
+				for (int j = i; j <=5000 && j < i + 10; ++j) {
+					prios[j] = 1;
+				}
+				i += 10;
 			}
-			i += 10;
+			// prios[i] = rand() % 10 > 0 ? 0 : 1;
 		}
-		// prios[i] = rand() % 10 > 0 ? 0 : 1;
-		// prios[i] = 0;
+	} else {
+		for (int i = 0; i <= 5000; ++i) {
+			prios[i] = 0;
+		}
 	}
 	int seg_ptr = 0;
 
@@ -156,13 +142,6 @@ void test(int mode)
 
 			// 发送上层协议包
 			ikcp_send(kcp1, buffer, 9, prios[seg_ptr++]);
-
-			// ((IUINT32*)buffer)[0] = index++;
-			// ((IUINT32*)buffer)[1] = current;
-			// ((IUINT8*)buffer)[8] = 1;
-
-			// // 发送上层协议包
-			// ikcp_send(kcp1, buffer, 9, 1);
 		}
 
 		// 处理虚拟网络：检测是否有udp包从p1->p2
@@ -231,48 +210,83 @@ void test(int mode)
 	ikcp_release(kcp1);
 	ikcp_release(kcp2);
 
+	return {(int)(sumrtt / count), (int)maxrtt, (int)vnet->tx1,
+		(int)(p_sumrtt / p_count), (int)p_maxrtt, (int)p_count,
+	 	(int)(up_sumrtt / up_count), (int)up_maxrtt, (int)up_count};
 
-	dprintf(fd, "(rto_priv=%.1f, loss=%d): \n", rto_priv, loss);
-	dprintf(fd, "\tavgrtt=%d maxrtt=%d tx=%d\n", (int)(sumrtt / count), (int)maxrtt, (int)vnet->tx1);
-	dprintf(fd, "\tprio: avgrtt=%d maxrtt=%d tx=%d\n", (int)(p_sumrtt / p_count), (int)p_maxrtt, (int)p_count);
-	dprintf(fd, "\tunprio: avgrtt=%d maxrtt=%d tx=%d\n\n", (int)(up_sumrtt / up_count), (int)up_maxrtt, (int)up_count);
 
-	printf("(rto_priv=%.1f, cwnd=%d): \n", rto_priv, cwnd_priv);
-	printf("avgrtt=%d maxrtt=%d tx=%d\n", (int)(sumrtt / count), (int)maxrtt, (int)vnet->tx1);
-	printf("prio: avgrtt=%d maxrtt=%d tx=%d\n", (int)(p_sumrtt / p_count), (int)p_maxrtt, (int)p_count);
-	printf("unprio: avgrtt=%d maxrtt=%d tx=%d\n", (int)(up_sumrtt / up_count), (int)up_maxrtt, (int)up_count);
 
 	delete vnet;
 }
 
 int main()
 {
-	// test(0);	// 默认模式，类似 TCP：正常模式，无快速重传，常规流控
-	// test(1);	// 普通模式，关闭流控等
+	int fd;
 
-
- 	fd = open("/workspaces/kcp/lim_vib_result.txt", O_WRONLY | O_CREAT | O_APPEND, 0644); 
+	// rto_cwnd_test
+ 	fd = open("/workspaces/kcp/rto_cwnd_result.txt", O_WRONLY | O_CREAT | O_APPEND, 0644); 
     if (fd == -1) {
         perror("open");
 		exit(1);
     }
 	for (rto_priv = 0.1; rto_priv < 1; rto_priv += 0.1) {
 		for (cwnd_priv = 0; cwnd_priv < 10; ++cwnd_priv) {
-			test(2);
+			vnet = new OldLatencySimulator(10, 60, 125);
+			auto res = test(true);
+
+			dprintf(fd, "(rto_priv=%.1f, cwnd_priv=%d): \n", rto_priv, cwnd_priv);
+			dprintf(fd, "\tavgrtt=%d maxrtt=%d tx=%d\n", res.avgrtt, res.maxrtt, res.tx1);
+			dprintf(fd, "\tprio: avgrtt=%d maxrtt=%d tx=%d\n", res.p_avgrtt, res.p_maxrtt, res.p_tx);
+			dprintf(fd, "\tunprio: avgrtt=%d maxrtt=%d tx=%d\n\n", res.up_avgrtt, res.up_maxrtt, res.up_tx);
+			delete vnet;
 		}
 	}
+	close(fd);
+
+	// rto_loss_test
+ 	fd = open("/workspaces/kcp/rto_cwnd_result.txt", O_WRONLY | O_CREAT | O_APPEND, 0644); 
+    if (fd == -1) {
+        perror("open");
+		exit(1);
+    }
+	for (rto_priv = 0.1; rto_priv < 1; rto_priv += 0.1) {
+		for (loss = 10; loss < 100; loss += 10) {
+			vnet = new OldLatencySimulator(10, 60, 125);
+			auto res = test(true);
+
+			dprintf(fd, "(rto_priv=%.1f, loss=%d): \n", rto_priv, loss);
+			dprintf(fd, "\tavgrtt=%d maxrtt=%d tx=%d\n", res.avgrtt, res.maxrtt, res.tx1);
+			dprintf(fd, "\tprio: avgrtt=%d maxrtt=%d tx=%d\n", res.p_avgrtt, res.p_maxrtt, res.p_tx);
+			dprintf(fd, "\tunprio: avgrtt=%d maxrtt=%d tx=%d\n\n", res.up_avgrtt, res.up_maxrtt, res.up_tx);
+			delete vnet;
+		}
+	}
+	close(fd);
+
+	// vib_rto_cwnd_test
+ 	fd = open("/workspaces/kcp/rto_cwnd_result.txt", O_WRONLY | O_CREAT | O_APPEND, 0644); 
+    if (fd == -1) {
+        perror("open");
+		exit(1);
+    }
+	for (rto_priv = 0.1; rto_priv < 1; rto_priv += 0.1) {
+		for (loss = 10; loss < 100; loss += 10) {
+			vnet = new VibLatencySimulator(10, 40, 60, 125, 100, 1);
+			auto res = test(true);
+
+			dprintf(fd, "(rto_priv=%.1f, loss=%d): \n", rto_priv, loss);
+			dprintf(fd, "\tavgrtt=%d maxrtt=%d tx=%d\n", res.avgrtt, res.maxrtt, res.tx1);
+			dprintf(fd, "\tprio: avgrtt=%d maxrtt=%d tx=%d\n", res.p_avgrtt, res.p_maxrtt, res.p_tx);
+			dprintf(fd, "\tunprio: avgrtt=%d maxrtt=%d tx=%d\n\n", res.up_avgrtt, res.up_maxrtt, res.up_tx);
+			delete vnet;
+		}
+	}
+	close(fd);
+
+	// no prio mechanism test
+	vnet = new VibLatencySimulator(10, 40, 60, 125, 100, 1);
+	auto res = test(false);
+	printf("\tavgrtt=%d maxrtt=%d tx=%d\n", res.avgrtt, res.maxrtt, res.tx1);
+
 	return 0;
 }
-
-/*
-default mode result (20917ms):
-avgrtt=740 maxrtt=1507
-
-normal mode result (20131ms):
-avgrtt=156 maxrtt=571
-
-fast mode result (20207ms):
-avgrtt=138 maxrtt=392
-*/
-
-
